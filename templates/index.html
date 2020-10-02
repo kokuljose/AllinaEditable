@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head >
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/fa.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <title>i10x</title>
+</head>
+<body class="bg-light" style="background-image: url('static/img/banner.png');">
+
+<nav class="navbar  navbar-expand-sm fixed-top bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img src="{{ url_for('static', filename = 'img/logo.png') }}" alt="i10x" height="36" width="72"></a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-info  fa-lg"></span> About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-list  fa-lg"></span> Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-address-card  fa-lg"></span> Contact</a></li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div id="Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title text-primary">Receipt Details </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body bg-light">
+                    <form id="s123">
+                        <a id="Message" class="row row-content">
+                            </a>
+                        <div id="csvTab" class="row row-content">
+                            </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-primary mx-auto mb-3 col-sm-2 align-self-start mt-3 mr-5" data-dismiss="modal">OK</button>
+                            <a type="button" class="btn btn-warning mx-auto mb-3 col-sm-2 align-self-start mt-3 ml-4 mr-4" id="consdown">Download CSV</a>
+                            <a type="button" class="btn btn-warning mx-auto mb-3 col-sm-2 align-self-start mt-3 ml-4 mr-4" id="docdown">Download DOC</a>
+                            <button type="button" class="btn btn-secondary mx-auto mb-3 col-sm-2 offset-md-4 mt-3 ml-5" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row row-content align-items-center no-gutters">
+          <form class="col-12 col-sm-8 offset-sm-2" id="fileUploadForm" >
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-paperclip"></i></span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" name="file" class="fileIn" id="fileSelect">
+                    <input type="text" for="fileSelect" class="custom-file-label form-control" id="fileDisp" placeholder="Choose file(s) ..." readonly="readonly" data-action="display" />
+                </div>
+                <div class="input-group-append">
+                    <button class="input-group-text  btn btn-primary" type="submit" id="btnSubmit">Upload</button>
+
+                <button class="btn btn-primary" type="button" id="loading"  style="display:none;">
+                          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                          Processing...
+                </button>
+                    <div class="spinner-border text-primary" role="status" id="loading"  style="display:none;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+            </div>
+
+            </div>
+            </form>
+
+        </div>
+        
+    </div>
+    <script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'js/jquery-3.5.1.min.js') }}" ></script>
+    <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'popper.js/dist/umd/popper.min.js') }}" ></script>
+    <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'bootstrap/dist/js/bootstrap.min.js') }}" ></script>
+    <script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'js/scripts.js') }}" ></script>
+
+</body>
+
+</html>
