@@ -76,8 +76,9 @@ def download_csv(filename):
     if request.method == 'POST':
         df = pd.DataFrame(request.values.lists())
         allTables=df.values.tolist()
-        csvLoL=MyLoL2CSVConcurr.getCSVLoL(allTables)
-        MyTable.saveToCSV(csvLoL,filename+"Concurr")
+        fileName=MyLoL2PDF.getCSVLol(allTables, filename)
+        # csvLoL=MyLoL2CSVConcurr.getCSVLoL(allTables)
+        # MyTable.saveToCSV(csvLoL,filename+"Concurr")
         # si = StringIO()
         # cw = csv.writer(si)
         # cw.writerows(csvLoL)
@@ -85,7 +86,7 @@ def download_csv(filename):
         # output.headers["Content-Disposition"] = "attachment; filename=export.csv"
         # output.headers["Content-type"] = "application/csv"
         # return output
-        return filename+"Concurr.csv"
+        return filename+"Reconciled.csv"
     return "MyerrorCSV"
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():

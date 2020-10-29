@@ -3,6 +3,7 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.lib import colors
 from PyPDF2 import PdfFileWriter, PdfFileReader,PdfFileMerger
+from MyModules import MyTable
 def getTabFromList(list):
     tab=[]
     row=[]
@@ -98,6 +99,17 @@ def splitPDF(filename,page_number):
 
     except AssertionError as e:
         print("Error: The PDF you are cutting has less pages than you want to cut!")
+def getCSVLol(allTables,filename):
+    generalDetails, rebateTab, roomTab, foodTab, avTab, miscTab = getTabDetails(allTables)
+    tab=[]
+    tab.extend(generalDetails)
+    tab.extend(rebateTab)
+    tab.extend(roomTab)
+    tab.extend(foodTab)
+    tab.extend(avTab)
+    tab.extend(miscTab)
+    MyTable.saveToCSV(tab, filename + "Reconciled")
+    return filename
 def getPDFLoL(allTables,filename):
     generalDetails,rebateTab,roomTab,foodTab,avTab,miscTab = getTabDetails(allTables)
     fileName="Output/"+filename+"Reconciled.pdf"
