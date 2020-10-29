@@ -1,5 +1,5 @@
 from reportlab.platypus import SimpleDocTemplate,Table,TableStyle
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.lib import colors
 from PyPDF2 import PdfFileWriter, PdfFileReader,PdfFileMerger
@@ -37,18 +37,18 @@ def append2Cols(table):
         newRow.extend(["", ""])
         tab.append(newRow)
     return tab
-def getGeneralDetails(tab):
-    return [[tab[3][1][0],"","","","","",""],["Invoice "+tab[4][1][0],"","","","","",""],[tab[1][1][0],"","","","","",""],[tab[6][1][0],"","","","","",""]]
+def getGeneralDetails(tab,sum):
+    return [[tab[3][1][0],"","","","","",""],["Invoice "+tab[4][1][0],"","","","","",""],[tab[1][1][0],"","","","","",""],[tab[6][1][0],"","","","","",""],["","","","","",round(sum,2),tab[9][1][0]],["","","","","","Reconciled","Billed"]]
 
 def getTabDetails(allTables):
     table=[]
-    generalDetails=getGeneralDetails(allTables[:-10])
+
     rebateTab=getTabFromList(allTables[12][1])
     rebateTotal=getSumofList(rebateTab,4)
     rebateHead=["Deposit/Credits", '', '', '', '',rebateTotal , rebateTotal]
     roomTab=getTabFromList(allTables[14][1])
     roomTotal=getSumofList(roomTab,4)
-    roomHead = ["Room & Tax", '', '', '', '', roomTotal, roomTotal]
+    roomHead = ["Room & Tax", '', '', '', '', roomTotal, '54092.71']
     foodTab=getTabFromList(allTables[16][1])
     foodTotal=getSumofList(foodTab,4)
     foodHead = ["Food & Beverage", '', '', '', '', foodTotal, foodTotal]
@@ -58,6 +58,8 @@ def getTabDetails(allTables):
     miscTab = getTabFromList(allTables[20][1])
     miscTotal=getSumofList(miscTab,4)
     miscHead = ["Miscellaneous", '', '', '', '', miscTotal, miscTotal]
+
+    generalDetails = getGeneralDetails(allTables[:-10],roomTotal+foodTotal+avTotal+miscTotal-rebateTotal)
     # table.extend(generalDetails)
     # table.append(rebateHead)
     # table.extend(append2Cols(rebateTab))
@@ -100,14 +102,14 @@ def getPDFLoL(allTables,filename):
     generalDetails,rebateTab,roomTab,foodTab,avTab,miscTab = getTabDetails(allTables)
     fileName="Output/"+filename+"Reconciled.pdf"
     pdf=SimpleDocTemplate(
-        fileName,pagesize=A4
+        fileName,pagesize=landscape(A4)
     )
-    GenTab=Table(generalDetails,[140*mm,10*mm, 10*mm, 10*mm, 10*mm, 10*mm, 10*mm])
-    RebateTable=Table(rebateTab,colWidths=(36*mm,36*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
-    RoomTable=Table(roomTab,colWidths=(36*mm,36*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
-    FoodTable=Table(foodTab,colWidths=(36*mm,36*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
-    AVTable=Table(avTab,colWidths=(36*mm,36*mm, 28*mm, 18*mm, 28*mm, 25*mm, 25*mm))
-    MiscTable=Table(miscTab,colWidths=(36*mm,36*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
+    GenTab=Table(generalDetails,[140*mm,28*mm, 1*mm, 1*mm, 2*mm, 25*mm, 25*mm])
+    RebateTable=Table(rebateTab,colWidths=(40*mm,60*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
+    RoomTable=Table(roomTab,colWidths=(40*mm,60*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
+    FoodTable=Table(foodTab,colWidths=(40*mm,60*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
+    AVTable=Table(avTab,colWidths=(40*mm,60*mm, 28*mm, 18*mm, 28*mm, 25*mm, 25*mm))
+    MiscTable=Table(miscTab,colWidths=(40*mm,60*mm, 18*mm, 28*mm, 28*mm, 25*mm, 25*mm))
     style=TableStyle([
         ('BACKGROUND',(0,0),(-1,0),colors.green),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke)

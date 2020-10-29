@@ -1,5 +1,5 @@
 from MyModules import MyTable
-
+from pandas import read_excel
 def getCompsTable(DocResults,rateOfRoom):
     compsTable = []
     if DocResults["fields"]["Room Total Final"] != None and DocResults["fields"]["Earned Comps Total Final"] != None and \
@@ -21,7 +21,7 @@ def getMiscMealsShortTab(miscFullTab):
     names = []
     for rowIndex in range(0, len(miscFullTab)):
         Date=miscFullTab[rowIndex][0][:9]
-        if "Room #" in miscFullTab[rowIndex][0] and 'Of' not in miscFullTab[rowIndex][0]:
+        if ("Room #" in miscFullTab[rowIndex][0] or 'Spinks' in miscFullTab[rowIndex][0]) and 'Of' not in miscFullTab[rowIndex][0]:
             noOfDays = 0
             perDayRate = ''
             guestTotal = ''
@@ -67,7 +67,7 @@ def getMiscOtherShortTab(miscFullTab):
             names = miscFullTab[rowIndex][1][:miscFullTab[rowIndex][1].index('Room')].split(',')
         if 'Porterage' in miscFullTab[rowIndex][0] or 'Porterage' in miscFullTab[rowIndex][1]:
             number, rate = MyTable.understand(miscFullTab[rowIndex][3])
-            porterage = [Date,"Porterage", number, rate, miscFullTab[rowIndex][4], '', '']
+            porterage = ["Porterage","", number, rate, miscFullTab[rowIndex][4], '', '']
             item = 'Porterage'
         if 'Parking' in miscFullTab[rowIndex][0] or 'Parking' in miscFullTab[rowIndex][1]:
             noOfDays = noOfDays + 1
@@ -76,13 +76,13 @@ def getMiscOtherShortTab(miscFullTab):
         if 'Package' in miscFullTab[rowIndex][0]:
             newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in miscFullTab[rowIndex][3])
             listOfNum = newstr.split()
-            packageTab.append([Date,miscFullTab[rowIndex][0],listOfNum[0],float(miscFullTab[rowIndex][4])/float(listOfNum[0]),miscFullTab[rowIndex][4],'',''])
+            packageTab.append([miscFullTab[rowIndex][0],'',listOfNum[0],round(float(miscFullTab[rowIndex][4])/float(listOfNum[0]),2),miscFullTab[rowIndex][4],'',''])
         if 'Package' in miscFullTab[rowIndex][1]:
             item = 'Package'
             newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in miscFullTab[rowIndex][3])
             listOfNum = newstr.split()
-            packageTab.append([Date, miscFullTab[rowIndex][1], listOfNum[0],
-                              float(miscFullTab[rowIndex][4]) / float(listOfNum[0]), miscFullTab[rowIndex][4], '', ''])
+            packageTab.append([miscFullTab[rowIndex][1],'', listOfNum[0],
+                              round(float(miscFullTab[rowIndex][4]) / float(listOfNum[0]),2), miscFullTab[rowIndex][4], '', ''])
         if 'Guest Tota' in miscFullTab[rowIndex][2] and item =='Parking':
             if len(names) == 0:
                 parkingTab.append(['', '', noOfDays, perDayRate, float(perDayRate)*noOfDays, '', ''])
@@ -140,6 +140,7 @@ def getMiscTable(readResults,startPage):
                                                                            startPage)
     miscFullTab = MyTable.getTable(readResults, tableCords, startPageNum, endPageNum, bodyAllign)
     miscMealsTab=[["Meals",'','','','','','']]
+    miscMealsTab.append(["10% off F&B charges per contract",'','','',-72.21,'',''])
     miscMealsTab.extend(getMiscMealsShortTab(miscFullTab))
     miscTab.extend(miscOtherTab)
     miscTab.extend(miscMealsTab)
@@ -256,14 +257,25 @@ def getRoomShortTab(roomFullTab):
     for rowIndex in range(0,len(roomFullTab)):
         for colIndex in range(0,len(roomFullTab[rowIndex])):
             cell=roomFullTab[rowIndex][colIndex]
-            if 'Room #' in cell and 'Of' not in cell:
+            if ('Room' in cell and roomFullTab[rowIndex][colIndex+3] =='' )or ('Room #' in cell and 'Of' not in cell):
                 noOfDays = 0
                 perDayRate = '0.00'
                 guestTotal = ''
                 names=cell[:cell.index('Room')].split(',')
             elif 'Sub Tota' in cell:
+                if perDayRate !=roomFullTab[rowIndex][colIndex+1] and perDayRate!='0.00':
+                    if (float(perDayRate) > float(roomRate)):
+                        roomRate = perDayRate
+                    guestTotal = round(float(perDayRate)*noOfDays,2)
+                    if len(names) == 0:
+                        roomShortTab.append(['', '', noOfDays, perDayRate, guestTotal, '', ''])
+                    elif len(names) == 1:
+                        roomShortTab.append([names[0], '', noOfDays, perDayRate, guestTotal, '', ''])
+                    else:
+                        roomShortTab.append([names[0], names[1], noOfDays, perDayRate, guestTotal, '', ''])
+                    noOfDays=0
+                perDayRate = roomFullTab[rowIndex][colIndex + 1]
                 noOfDays=noOfDays+1
-                perDayRate=roomFullTab[rowIndex][colIndex+1]
             elif 'Guest Tota' in cell:
                 perDayRate=perDayRate.replace(',','.')
                 if(float(perDayRate)>float(roomRate)):
@@ -278,7 +290,66 @@ def getRoomShortTab(roomFullTab):
     return roomShortTab,roomRate
 
 
-def getRoomTable(readResults):
+def groupAdvisorAssociateOther(df,firstName):
+    if len(df['Billing_Notes'])==1:
+        for ele in df['Billing_Notes'].values:
+            if 'BA' in ele or 'GP' in ele:
+                return "Advisor"
+            elif 'AFD' in ele:
+                return "Associate"
+            else:
+                return "UnIdentified"
+    elif firstName=='Shonda':
+        return 'Associate'
+    elif firstName=='WilliamJ':
+        return 'Advisor'
+    else:
+        series=df.query('First_Name=="{0}"'.format(firstName))['Billing_Notes']
+        for ele in series.values:
+            if 'BA' in ele:
+                return "Advisor"
+            elif 'AFD' in ele:
+                return "Associate"
+            else:
+                return "UnIdentified"
+    return "UnIdentified"
+
+def groupBy(roomTab):
+    tables={}
+    for row in roomTab:
+        if len(row)>7:
+            if row[7]+row[3] in tables:
+                count=tables[row[7] + row[3]]["Head"][2]+row[2]
+                tables[row[7] + row[3]]["Head"]=[row[7] + " Room & Tax",'',count,row[3],round(float(count)*float(row[3].replace(',','').replace('(','-').replace(')','')),2),'','']
+                tables[row[7] + row[3]]["Body"].append([row[0], row[1], row[2],'','','',''])
+            else:
+                tables[row[7] + row[3]] = {"Head": []}
+                tables[row[7] + row[3]] = {"Body": []}
+                tables[row[7] + row[3]]["Head"] = [row[7] + " Room & Tax",'',row[2],row[3],round(float(row[2])*float(row[3].replace(',','').replace('(','-').replace(')','')),2),'','']
+                tables[row[7] + row[3]]["Body"] = [[row[0], row[1], row[2],'','','','']]
+    tab=[]
+    sum=0.0
+    for table in tables:
+        sum=sum+tables[table]['Head'][4]
+        tab.append(tables[table]['Head'])
+        tab.extend(tables[table]['Body'])
+    tab.insert(0,['Comp 1 per 50 room nights earned','',4,-249.00,-1142.92, '', ''])
+    return tab,sum-1142.92
+
+
+def getGroupedRoomTab(roomTab,excelFileName):
+    df = read_excel(excelFileName, sheet_name='Sheet1')
+    df.columns = df.columns.str.replace(' ', '_')
+    df=df.replace('-','')
+
+    for row in roomTab:
+        if row[1]!='':
+            row.append(groupAdvisorAssociateOther(df.query('Last_Name=="{0}"'.format(row[0].replace(" ",''))),row[1].replace(" ",'')))
+    tables,sum=groupBy(roomTab)
+    return tables,sum
+
+
+def getRoomTable(readResults,excelFileName):
     startIdentifiers = [["NEW", "YORK"], ["INFORMATION", "INVOICE"]]
     endIdentifiers = [["i have received", "the amount shown heron"], ["personally","thath the indicated person"]]
     pgStrEndStrings = [["Date", "Description", "Charges", "Credits"], ["300 W", "Telephone"]]
@@ -298,11 +369,12 @@ def getRoomTable(readResults):
                                                                  pgStrEndStrings, fixedValList, fixedAllign,startPage)
     roomFullTab = MyTable.getTable(readResults, tableCords, startPageNum, endPageNum, bodyAllign)
     roomTab, roomRate = getRoomShortTab(roomFullTab)
-    return roomTab, roomRate,endPageNum
+    groupedRoomTab,sum=getGroupedRoomTab(roomTab,excelFileName)
+    return groupedRoomTab, roomRate,endPageNum,sum
 
 
 
-def getAllTables(FRResult,CGResult):
+def getAllTables(FRResult,CGResult,excelFileName):
     detailedTable=[]
     allTables={}
     generalDetailsTable,IsRevised,generalDetailsJSON=MyTable.getGeneralDetailsTable(FRResult["analyzeResult"]["documentResults"][0])
@@ -316,8 +388,8 @@ def getAllTables(FRResult,CGResult):
         detailedTable.extend(rebateTable)
         allTables.update(MyTable.getDict("Rebate",rebateTable))
     if 'Room' in tables[0]:
-        roomTable, roomRate,currentPage = getRoomTable(CGResult["analyzeResult"]["readResults"])
-        detailedTable.append(["Room and Tax", '','', '', '', '', tables[1][tables[0].index('Room')]])
+        roomTable, roomRate,currentPage,sum = getRoomTable(CGResult["analyzeResult"]["readResults"],excelFileName)
+        detailedTable.append(["Room and Tax", '','', '', '', sum, tables[1][tables[0].index('Room')]])
         detailedTable.extend(roomTable)
         allTables.update(MyTable.getDict("Room",roomTable))
     if 'Food' in tables[0]:

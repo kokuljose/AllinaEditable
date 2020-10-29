@@ -1,6 +1,6 @@
 from MyModules.Template import OMNI,Intercontinental,TravelPros,Cooper
 from MyModules import MyTable,MyLoL2DOCX
-def GetTableFromJSON(CGResult,FRResult,filename):
+def GetTableFromJSON(CGResult,FRResult,filename,excelFileName):
     IsRevised=False
     allTables={}
     if 'OMNI Hotels & Resorts' in FRResult["analyzeResult"]["documentResults"][0]["docType"]:
@@ -8,7 +8,7 @@ def GetTableFromJSON(CGResult,FRResult,filename):
         generalDetailsTable,overviewTable,detailedTable,IsRevised=OMNI.getAllTables(FRResult,CGResult)
     elif 'Intercontinental' in FRResult["analyzeResult"]["documentResults"][0]["docType"]:
         print("intercontinental")
-        generalDetailsTable, overviewTable, detailedTable, IsRevised,generalDetailsJSON,overviewJSON,allTables = Intercontinental.getAllTables(FRResult, CGResult)
+        generalDetailsTable, overviewTable, detailedTable, IsRevised,generalDetailsJSON,overviewJSON,allTables = Intercontinental.getAllTables(FRResult, CGResult,excelFileName)
     elif 'Cooper' in FRResult["analyzeResult"]["documentResults"][0]["docType"]:
         print("cooper")
         generalDetailsTable, detailedTable = Cooper.getAllTables(FRResult)
@@ -17,6 +17,7 @@ def GetTableFromJSON(CGResult,FRResult,filename):
     elif 'Tristar' in FRResult["analyzeResult"]["documentResults"][0]["docType"]:
         generalDetailsTable, detailedTable = TravelPros.getAllTables(FRResult)
     print("success")
+
+    MyTable.saveToCSV(detailedTable,filename[:-4]+"Reconciled")
     return generalDetailsJSON,overviewJSON,allTables
-    # MyTable.saveToCSV(detailedTable,filename[:-4]+"Reconciled")
     # MyLoL2DOCX.LoL2DOCX(detailedTable,filename[:-4],IsRevised)

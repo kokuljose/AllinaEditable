@@ -10,11 +10,12 @@ from werkzeug.utils import secure_filename
 from PyPDF2 import PdfFileReader
 from MyModules import MyPDF2JSON,MyJSON2LoLTables,MyLoL2CSVConcurr,MyTable,MyLoL2PDF
 
-INPUT_ALLOWED_EXTENSIONS={ 'pdf'}# 'png', 'jpg', 'jpeg' also supported but want to change in GetPDF2JSON
+INPUT_ALLOWED_EXTENSIONS={ 'pdf','xls'}# 'png', 'jpg', 'jpeg' also supported but want to change in GetPDF2JSON
 OUTPUT_DIRECTORY = os.path.dirname(__file__)+"/Output"
 PROCESSING_DIRECTORY = os.path.dirname(__file__)+"/Processing"
 generalDetails={}
 allTables={}
+excelFileName=''
 def ProcessFile(file):
     CGResult=''
     if (not os.path.isdir(OUTPUT_DIRECTORY)):
@@ -32,7 +33,7 @@ def ProcessFile(file):
         FRResult,CGResult=MyPDF2JSON.GetPDF2JSON(file,filename)
     global generalDetails
     global allTables
-    generalDetailsJSON,overviewJSON,allTables=MyJSON2LoLTables.GetTableFromJSON(CGResult,FRResult,filename)
+    generalDetailsJSON,overviewJSON,allTables=MyJSON2LoLTables.GetTableFromJSON(CGResult,FRResult,filename,excelFileName)
     generalDetails=generalDetailsJSON
     file.save(os.path.join(OUTPUT_DIRECTORY, filename))
     return filename
@@ -89,13 +90,17 @@ def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
             return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename=ProcessFile(file)
-            #filename="G1341_IV31905.pdf"
-            return jsonify(filename=filename[:-4])
+        files = request.files.getlist("file")
+        for file in files:
+            if file and allowed_file(file.filename):
+                if file.content_type =='application/pdf':
+                    pdfFile=file
+                else:
+                    global excelFileName
+                    excelFileName=os.path.join(PROCESSING_DIRECTORY,secure_filename(file.filename))
+                    file.save(excelFileName)
+        filename = ProcessFile(pdfFile)
+        return jsonify(filename=filename[:-4])
     return ''
 
 

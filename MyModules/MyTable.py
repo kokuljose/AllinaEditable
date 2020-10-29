@@ -2,7 +2,6 @@ import csv
 import os
 import pandas as pd
 import datetime
-
 OUTPUT_DIRECTORY = os.path.dirname(__file__)[:-10] + "/output"
 def html_input(c):
     return '<input name="{}" value="{{}}" />'.format(c)
@@ -31,16 +30,19 @@ def saveToCSVWithHead(row, fileName, head):
 
 
 def formatDate(date):
-    date=datetime.datetime.strptime(date, '%d-%b-%y')
-    return date.strftime('%Y-%m-%d')
+    if type(date) is not datetime.date:
+        date=datetime.datetime.strptime(date, '%d-%b-%y')
+        return date.strftime('%Y-%m-%d')
+    else:
+        return date
 
 
 def getGeneralDetailsTable(DocResults):
     generalDetailsTable = []
     IsRevised = False
     Vendor=''
-    InvNum=''
-    InvDate=''
+    InvNum=str(datetime.date.today()).replace('-','')
+    InvDate=datetime.date.today()
     InvTotal=''
     City=''
     Event=''
@@ -62,17 +64,15 @@ def getGeneralDetailsTable(DocResults):
         generalDetailsTable.append(
             ['Invoice ' + DocResults["fields"]["Invoice Number"]["text"], '', '', '', '', '', ''])
     else:
-        generalDetailsTable.append(['', '', '', '', '', '', ''])
+        generalDetailsTable.append([InvNum, '', '', '', '', '', ''])
     if DocResults["fields"]["In Payment For"] != None:
         Event=DocResults["fields"]["In Payment For"]["text"]
         generalDetailsTable.append([DocResults["fields"]["In Payment For"]["text"], '', '', '', '', '', ''])
     else:
         generalDetailsTable.append(['', '', '', '', '', '', ''])
-    if DocResults["fields"]["Invoice Date"] != None:
-        InvDate=DocResults["fields"]["Invoice Date"]["text"]
-        generalDetailsTable.append([DocResults["fields"]["Invoice Date"]["text"], '', '', '', '', '', ''])
-    else:
-        generalDetailsTable.append(['', '', '', '', '', '', ''])
+
+    generalDetailsTable.append([InvDate, '', '', '', '', '', ''])
+
     if DocResults["fields"]["Room Total Final"] != None and DocResults["fields"]["Earned Comps Total Final"] != None and \
             DocResults["fields"]["Food Total Final"] != None:
         IsRevised = True

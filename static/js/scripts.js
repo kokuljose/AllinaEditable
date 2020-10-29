@@ -27,23 +27,7 @@ $(document).ready(function(){
                     success: function (data) {
 
                         console.log("SUCCESS : ", data);
-                        //var result = JSON.parse(data);
-                        // $("#Message").html("The file : "+data['filename']+" is successfully processed.");
-                        // //$( "#csvTab" ).replaceWith(data['table']);
-                        //
-                        // var con="/uploads/"+data['filename']+"Reconciled.csv"
-                        // $("#consdown").attr("href", con);
-                        // var doc="/uploads/" + data['filename'] +"Reconciled.docx"
-                        // $("#docdown").attr("href", doc);
-                        // $("#btnSubmit").prop("disabled", false);
-                        // $('#load').hide();
-                        // $('#Modal').modal("show");
-                        // $("#btnSubmit").show();
-                        // $('#loading').hide();
-                        // $('#fileSelect').val("");
-                        // $('#fileDisp').val("")
-
-            window.location.href = "/reconcile/"+data['filename'];
+                        window.location.href = "/reconcile/"+data['filename'];
 
                     },
                     error: function (e) {
