@@ -20,6 +20,8 @@ def ProcessFile(file):
     CGResult=''
     if (not os.path.isdir(OUTPUT_DIRECTORY)):
         os.makedirs(OUTPUT_DIRECTORY)
+    if (not os.path.isdir(PROCESSING_DIRECTORY)):
+        os.makedirs(PROCESSING_DIRECTORY)
     filename = secure_filename(file.filename)
     file.save(os.path.join(PROCESSING_DIRECTORY, filename))
     if os.path.exists(PROCESSING_DIRECTORY + '/' + file.filename[:-4] + 'FRResult.json'):
@@ -91,6 +93,10 @@ def upload_file():
         if 'file' not in request.files:
             return redirect(request.url)
         files = request.files.getlist("file")
+        if (not os.path.isdir(OUTPUT_DIRECTORY)):
+            os.makedirs(OUTPUT_DIRECTORY)
+        if (not os.path.isdir(PROCESSING_DIRECTORY)):
+            os.makedirs(PROCESSING_DIRECTORY)
         for file in files:
             if file and allowed_file(file.filename):
                 if file.content_type =='application/pdf':
