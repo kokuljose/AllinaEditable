@@ -14,7 +14,7 @@ INPUT_ALLOWED_EXTENSIONS={ 'pdf','xls'}# 'png', 'jpg', 'jpeg' also supported but
 OUTPUT_DIRECTORY = os.path.dirname(__file__)+"/Output"
 PROCESSING_DIRECTORY = os.path.dirname(__file__)+"/Processing"
 generalDetails={}
-allTables={}
+allTables={} 
 excelFileName=''
 def ProcessFile(file):
     CGResult=''
