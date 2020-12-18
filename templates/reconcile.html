@@ -231,9 +231,10 @@
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
               <div class="card-body">
-                  <button type="submit" id="downloadCSV" class="btn btn-success"><span class="fa fa-table fa-lg"></span>  Download CSV </button>
-                  <a type="submit" class="btn btn-success" href="https://bit.ly/2Kfn2nK"><span class="fa fa-file-excel-o fa-lg"></span>  Download Excel </a>
-                  <button type="submit" id="downloadPDF" class="btn btn-danger"><span class="fa fa-file-pdf fa-lg"></span>  Download PDF For E-Mail </button>
+                  <a type="submit" id="downloadOCR" class="btn btn-success"><span class="fa fa-cloud-download fa-lg"></span>  OCR </a>
+                  <button type="submit" id="downloadCSV" class="btn btn-success"><span class="fa fa-cloud-download fa-lg"></span>  CSV </button>
+                  <a type="submit" class="btn btn-success" href="https://bit.ly/2Kfn2nK"><span class="fa fa-cloud-download fa-lg"></span>  Excel </a>
+                  <button type="submit" id="downloadPDF" class="btn btn-danger"><span class="fa fa-cloud-download fa-lg"></span>  PDF </button>
                   <button type="submit" id="sendMail" class="btn btn-primary"><span class="fa fa-envelope fa-lg"></span>  E-Mail Directly </button>
                   <button type="button" id="toConcur" class="btn btn-dark" disabled><span class="fas fa-syn fa-lg"></span>  Update to Concur </button>
               </div>
@@ -406,6 +407,34 @@ $(document).ready(function(){
                     type: "POST",
                     enctype: 'multipart/form-data',
                     url: "/downloadCSV/"+filename[4],
+                    data: new FormData(formElement),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+                        window.location.href = "/download/"+data;
+                        console.log("SUCCESS : ", data);
+
+                    },
+                    error: function (e) {
+
+                        console.log("ERROR : ", e);
+
+                    }
+                });
+    });
+        $("#downloadOCR").click(function (event) {
+        event.preventDefault();
+            var formElement = document.querySelector("form");
+            var filename=window.location.href.split("/")
+            {#var request = new XMLHttpRequest();#}
+            {#request.open("POST", "/downloadOCR/"+filename[4]);#}
+            {#request.send(new FormData(formElement));#}
+            $.ajax({
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: "/downloadOCR/"+filename[4],
                     data: new FormData(formElement),
                     processData: false,
                     contentType: false,
