@@ -56,7 +56,7 @@ def download_file(filename):
     return send_from_directory("Output",
                                filename)
 @app.route('/downloadOCR')
-def download_file():
+def download_OCRfile():
     return send_from_directory("MyModules",
                                "G1387_IV32880OCR.csv")
 @app.route('/')
