@@ -396,22 +396,21 @@ $(document).ready(function(){
     $("#sendMail").click(function (event){
         prompt("Please Enter the Email")
     });
-    $("#downloadCSV").click(function (event) {
+    $("#downloadOCR").click(function (event) {
         event.preventDefault();
-         var filename=window.location.href.split("/")
-        window.location.href = "/download/"+"G1387_IV32880OCR.csv";
+        window.location.href = "/downloadOCR";
     });
-        $("#downloadOCR").click(function (event) {
+        $("#downloadCSV").click(function (event) {
         event.preventDefault();
             var formElement = document.querySelector("form");
             var filename=window.location.href.split("/")
             {#var request = new XMLHttpRequest();#}
-            {#request.open("POST", "/downloadOCR/"+filename[4]);#}
+            {#request.open("POST", "/downloadCSV/"+filename[4]);#}
             {#request.send(new FormData(formElement));#}
             $.ajax({
                     type: "POST",
                     enctype: 'multipart/form-data',
-                    url: "/downloadOCR/"+filename[4],
+                    url: "/downloadCSV/"+filename[4],
                     data: new FormData(formElement),
                     processData: false,
                     contentType: false,
