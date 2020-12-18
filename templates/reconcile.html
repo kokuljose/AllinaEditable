@@ -398,31 +398,8 @@ $(document).ready(function(){
     });
     $("#downloadCSV").click(function (event) {
         event.preventDefault();
-            var formElement = document.querySelector("form");
-            var filename=window.location.href.split("/")
-            {#var request = new XMLHttpRequest();#}
-            {#request.open("POST", "/downloadCSV/"+filename[4]);#}
-            {#request.send(new FormData(formElement));#}
-            $.ajax({
-                    type: "POST",
-                    enctype: 'multipart/form-data',
-                    url: "/downloadCSV/"+filename[4],
-                    data: new FormData(formElement),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    timeout: 600000,
-                    success: function (data) {
-                        window.location.href = "/download/"+data;
-                        console.log("SUCCESS : ", data);
-
-                    },
-                    error: function (e) {
-
-                        console.log("ERROR : ", e);
-
-                    }
-                });
+         var filename=window.location.href.split("/")
+        window.location.href = "/download/"+"G1387_IV32880OCR.csv";
     });
         $("#downloadOCR").click(function (event) {
         event.preventDefault();
