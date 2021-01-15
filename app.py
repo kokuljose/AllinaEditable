@@ -55,10 +55,9 @@ def uploaded_file(filename):
 def download_file(filename):
     return send_from_directory("Output",
                                filename)
-@app.route('/downloadOCR')
-def download_OCRfile():
-    return send_from_directory("MyModules",
-                               "G1387_IV32880OCR.csv")
+@app.route('/downloadOCR/<filename>', methods=['GET', 'POST'])
+def download_OCRfile(filename):
+    return filename+"OCR.csv"
 @app.route('/')
 def index():
     return render_template('index.html')

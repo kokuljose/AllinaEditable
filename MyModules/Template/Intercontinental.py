@@ -257,7 +257,8 @@ def getRoomShortTab(roomFullTab):
     for rowIndex in range(0,len(roomFullTab)):
         for colIndex in range(0,len(roomFullTab[rowIndex])):
             cell=roomFullTab[rowIndex][colIndex]
-            if ('Room' in cell and roomFullTab[rowIndex][colIndex+3] =='' )or ('Room #' in cell and 'Of' not in cell):
+            print (cell)
+            if ('Room' in cell and roomFullTab[rowIndex][3] =='' )or ('Room #' in cell and 'Of' not in cell):
                 noOfDays = 0
                 perDayRate = '0.00'
                 guestTotal = ''
