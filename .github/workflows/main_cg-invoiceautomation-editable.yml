@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'cg-invoiceautomation-editable'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_74b1cfb0e70248a0ab16c71393516c0c }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a5d73e2709894cba8ec2400fd6ba10ab }}
