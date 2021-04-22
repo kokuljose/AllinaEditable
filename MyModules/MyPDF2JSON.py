@@ -3,7 +3,7 @@ import json
 import os
 import time
 from PyPDF2 import PdfFileWriter,PdfFileReader
-from pathlib import Path
+
 PROCESSING_DIRECTORY = os.path.dirname(__file__)[:-9]+"/Processing"
 
 COMPUTER_VISION_ENDPOINT="https://cg-invoiceautomation-ocr.cognitiveservices.azure.com/"

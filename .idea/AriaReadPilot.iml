@@ -12,6 +12,7 @@
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="C:\Users\KokulJose\OneDrive - Sequantix Pvt. Ltd\Project Files\KokulJoseSequantix\CG\AriaReadPilotEditable\requirements.txt" />
+    <option name="removeUnused" value="true" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

@@ -1,10 +1,6 @@
 import os
 import json
 import pandas as pd
-# from io import StringIO 
-# import csv
-# from numpy import random
-# import numpy as np
 from flask import Flask, render_template, send_from_directory, redirect, flash, request, jsonify,make_response
 from werkzeug.utils import secure_filename
 from PyPDF2 import PdfFileReader

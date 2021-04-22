@@ -2,7 +2,7 @@ import csv
 import os
 import pandas as pd
 import datetime
-OUTPUT_DIRECTORY = os.path.dirname(__file__)[:-10] + "/output"
+OUTPUT_DIRECTORY = os.path.dirname(__file__)[:-9] + "/Output"
 def html_input(c):
     return '<input name="{}" value="{{}}" />'.format(c)
 
