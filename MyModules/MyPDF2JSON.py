@@ -6,12 +6,12 @@ from PyPDF2 import PdfFileWriter,PdfFileReader
 from pathlib import Path
 PROCESSING_DIRECTORY = os.path.dirname(__file__)[:-9]+"/Processing"
 
-COMPUTER_VISION_ENDPOINT="https://i10x-aria-ocr-web-prd.cognitiveservices.azure.com/"
-COMPUTER_VISION_SUBSCRIPTION_KEY="04d7161e703342b2a87a52c230e89229"
+COMPUTER_VISION_ENDPOINT="https://cg-invoiceautomation-ocr.cognitiveservices.azure.com/"
+COMPUTER_VISION_SUBSCRIPTION_KEY="1be38ec2426243038ca38bd1fa17fe25"
 
-FORM_RECOGNIZER_ENDPOINT="https://cg-aria-fr-dev.cognitiveservices.azure.com/"
-FORM_RECOGNIZER_SUBSCRIPTION_KEY="5c21a998d2ea4a6392b9a194153d3d77"
-MODEL_ID="00a7a4ac-cbad-45d1-b454-366cc364e2c2"
+FORM_RECOGNIZER_ENDPOINT="https://cg-invoiceautomation-fr.cognitiveservices.azure.com/"
+FORM_RECOGNIZER_SUBSCRIPTION_KEY="5dcff61dc6c349e7a5627de79373d3ca"
+MODEL_ID="c1bd7ae6-ae71-4b6a-8991-ac8d681204a3"
 
 def printt():
     print("hellp")
