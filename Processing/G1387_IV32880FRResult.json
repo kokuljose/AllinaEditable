@@ -1,7 +1,7 @@
 {
     "status": "succeeded",
-    "createdDateTime": "2021-04-22T13:55:50Z",
-    "lastUpdatedDateTime": "2021-04-22T13:56:00Z",
+    "createdDateTime": "2021-04-22T14:03:20Z",
+    "lastUpdatedDateTime": "2021-04-22T14:03:31Z",
     "analyzeResult": {
         "version": "2.1.0",
         "readResults": [
@@ -12305,52 +12305,99 @@
                     2
                 ],
                 "fields": {
-                    "In Payment For": {
+                    "Invoice Amount": {
                         "type": "string",
-                        "valueString": "American Funds Forum 1 May 28 June 1, 2019",
-                        "text": "American Funds Forum 1 May 28 June 1, 2019",
-                        "page": 1,
+                        "valueString": "$ 122,249.72",
+                        "text": "$ 122,249.72",
+                        "page": 2,
                         "boundingBox": [
-                            3.05,
-                            3.215,
-                            4.49,
-                            3.215,
-                            4.49,
-                            3.66,
-                            3.05,
-                            3.66
+                            6.955,
+                            6.11,
+                            7.855,
+                            6.11,
+                            7.855,
+                            6.255,
+                            6.955,
+                            6.255
                         ],
-                        "confidence": 0.999,
+                        "confidence": 0.997,
                         "elements": [
-                            "#/readResults/0/lines/20/words/0",
-                            "#/readResults/0/lines/20/words/1",
-                            "#/readResults/0/lines/20/words/2",
-                            "#/readResults/0/lines/20/words/3",
-                            "#/readResults/0/lines/21/words/0",
-                            "#/readResults/0/lines/21/words/1",
-                            "#/readResults/0/lines/21/words/3",
-                            "#/readResults/0/lines/21/words/4",
-                            "#/readResults/0/lines/21/words/5"
+                            "#/readResults/1/lines/60/words/0",
+                            "#/readResults/1/lines/60/words/1"
                         ]
                     },
-                    "Company": {
+                    "Earned Comps Total": {
                         "type": "string",
-                        "valueString": "INTERCONTINENTAL",
-                        "text": "INTERCONTINENTAL",
+                        "valueString": "Comp 1 per 50 -- 4 room nights earned @ $249 $ (1,142.92)",
+                        "text": "Comp 1 per 50 -- 4 room nights earned @ $249 $ (1,142.92)",
+                        "page": 2,
+                        "boundingBox": [
+                            2.405,
+                            4.895,
+                            6.895,
+                            4.895,
+                            6.895,
+                            5.04,
+                            2.405,
+                            5.04
+                        ],
+                        "confidence": 0.997,
+                        "elements": [
+                            "#/readResults/1/lines/37/words/0",
+                            "#/readResults/1/lines/37/words/1",
+                            "#/readResults/1/lines/37/words/2",
+                            "#/readResults/1/lines/37/words/3",
+                            "#/readResults/1/lines/37/words/4",
+                            "#/readResults/1/lines/37/words/5",
+                            "#/readResults/1/lines/37/words/6",
+                            "#/readResults/1/lines/37/words/7",
+                            "#/readResults/1/lines/37/words/8",
+                            "#/readResults/1/lines/37/words/9",
+                            "#/readResults/1/lines/37/words/10",
+                            "#/readResults/1/lines/38/words/0",
+                            "#/readResults/1/lines/39/words/0"
+                        ]
+                    },
+                    "Final Invoice Amount": {
+                        "type": "string",
+                        "valueString": "$ 121,960.49",
+                        "text": "$ 121,960.49",
                         "page": 1,
                         "boundingBox": [
-                            1.14,
-                            1.04,
-                            3.015,
-                            1.04,
-                            3.015,
-                            1.22,
-                            1.14,
-                            1.22
+                            6.98,
+                            6.215,
+                            7.825,
+                            6.215,
+                            7.825,
+                            6.34,
+                            6.98,
+                            6.34
                         ],
-                        "confidence": 0.996,
+                        "confidence": 0.974,
                         "elements": [
-                            "#/readResults/0/lines/2/words/0"
+                            "#/readResults/0/lines/66/words/0",
+                            "#/readResults/0/lines/66/words/1"
+                        ]
+                    },
+                    "AV Total": {
+                        "type": "string",
+                        "valueString": "$ 39,496.04",
+                        "text": "$ 39,496.04",
+                        "page": 2,
+                        "boundingBox": [
+                            5.145,
+                            5.515,
+                            5.915,
+                            5.515,
+                            5.915,
+                            5.635,
+                            5.145,
+                            5.635
+                        ],
+                        "confidence": 0.995,
+                        "elements": [
+                            "#/readResults/1/lines/48/words/0",
+                            "#/readResults/1/lines/49/words/0"
                         ]
                     },
                     "Food Total": {
@@ -12395,67 +12442,25 @@
                             "#/readResults/0/lines/50/words/0"
                         ]
                     },
-                    "Final Invoice Amount": {
+                    "Misc Total Final": {
                         "type": "string",
-                        "valueString": "$ 121,960.49",
-                        "text": "$ 121,960.49",
-                        "page": 1,
-                        "boundingBox": [
-                            6.98,
-                            6.215,
-                            7.825,
-                            6.215,
-                            7.825,
-                            6.34,
-                            6.98,
-                            6.34
-                        ],
-                        "confidence": 0.974,
-                        "elements": [
-                            "#/readResults/0/lines/66/words/0",
-                            "#/readResults/0/lines/66/words/1"
-                        ]
-                    },
-                    "Room Total Final": {
-                        "type": "string",
-                        "valueString": "$ 55,524.86",
-                        "text": "$ 55,524.86",
+                        "valueString": "$ 2,877.21",
+                        "text": "$ 2,877.21",
                         "page": 1,
                         "boundingBox": [
                             5.185,
-                            4.705,
-                            5.915,
-                            4.705,
-                            5.915,
-                            4.82,
+                            5.92,
+                            5.895,
+                            5.92,
+                            5.895,
+                            6.03,
                             5.185,
-                            4.82
+                            6.03
                         ],
-                        "confidence": 0.974,
+                        "confidence": 0.975,
                         "elements": [
-                            "#/readResults/0/lines/36/words/0",
-                            "#/readResults/0/lines/37/words/0"
-                        ]
-                    },
-                    "AV Total Final": {
-                        "type": "string",
-                        "valueString": "$ 39,496.04",
-                        "text": "$ 39,496.04",
-                        "page": 1,
-                        "boundingBox": [
-                            5.185,
-                            5.615,
-                            5.915,
-                            5.615,
-                            5.915,
-                            5.73,
-                            5.185,
-                            5.73
-                        ],
-                        "confidence": 0.969,
-                        "elements": [
-                            "#/readResults/0/lines/54/words/0",
-                            "#/readResults/0/lines/55/words/0"
+                            "#/readResults/0/lines/59/words/0",
+                            "#/readResults/0/lines/60/words/0"
                         ]
                     },
                     "City": {
@@ -12481,71 +12486,25 @@
                             "#/readResults/0/lines/3/words/3"
                         ]
                     },
-                    "Misc Total Final": {
+                    "AV Total Final": {
                         "type": "string",
-                        "valueString": "$ 2,877.21",
-                        "text": "$ 2,877.21",
+                        "valueString": "$ 39,496.04",
+                        "text": "$ 39,496.04",
                         "page": 1,
                         "boundingBox": [
                             5.185,
-                            5.92,
-                            5.895,
-                            5.92,
-                            5.895,
-                            6.03,
+                            5.615,
+                            5.915,
+                            5.615,
+                            5.915,
+                            5.73,
                             5.185,
-                            6.03
+                            5.73
                         ],
-                        "confidence": 0.975,
+                        "confidence": 0.969,
                         "elements": [
-                            "#/readResults/0/lines/59/words/0",
-                            "#/readResults/0/lines/60/words/0"
-                        ]
-                    },
-                    "Invoice Date": {
-                        "type": "string",
-                        "valueString": "3-Jun-19",
-                        "text": "3-Jun-19",
-                        "page": 1,
-                        "boundingBox": [
-                            7.145,
-                            1.58,
-                            7.675,
-                            1.58,
-                            7.675,
-                            1.675,
-                            7.145,
-                            1.675
-                        ],
-                        "confidence": 1.0,
-                        "elements": [
-                            "#/readResults/0/lines/6/words/0"
-                        ]
-                    },
-                    "Adjustments": {
-                        "type": "string",
-                        "valueString": "Joseph Johnson 5/31 room night $ (289.23)",
-                        "text": "Joseph Johnson 5/31 room night $ (289.23)",
-                        "page": 1,
-                        "boundingBox": [
-                            2.47,
-                            5.01,
-                            6.875,
-                            5.01,
-                            6.875,
-                            5.13,
-                            2.47,
-                            5.13
-                        ],
-                        "confidence": 0.974,
-                        "elements": [
-                            "#/readResults/0/lines/43/words/0",
-                            "#/readResults/0/lines/43/words/1",
-                            "#/readResults/0/lines/43/words/2",
-                            "#/readResults/0/lines/43/words/3",
-                            "#/readResults/0/lines/43/words/4",
-                            "#/readResults/0/lines/44/words/0",
-                            "#/readResults/0/lines/45/words/0"
+                            "#/readResults/0/lines/54/words/0",
+                            "#/readResults/0/lines/55/words/0"
                         ]
                     },
                     "Rebate Total": {
@@ -12583,34 +12542,45 @@
                             "#/readResults/1/lines/30/words/0"
                         ]
                     },
-                    "Earned Comps Total Final": {
+                    "Invoice Date": {
                         "type": "string",
-                        "valueString": "Comp 1 per 50--4 room nights earned @ $249 $ (1,142.92)",
-                        "text": "Comp 1 per 50--4 room nights earned @ $249 $ (1,142.92)",
+                        "valueString": "3-Jun-19",
+                        "text": "3-Jun-19",
                         "page": 1,
                         "boundingBox": [
-                            2.475,
-                            4.86,
-                            6.875,
-                            4.86,
-                            6.875,
-                            4.98,
-                            2.475,
-                            4.98
+                            7.145,
+                            1.58,
+                            7.675,
+                            1.58,
+                            7.675,
+                            1.675,
+                            7.145,
+                            1.675
                         ],
-                        "confidence": 0.998,
+                        "confidence": 1.0,
                         "elements": [
-                            "#/readResults/0/lines/39/words/0",
-                            "#/readResults/0/lines/39/words/1",
-                            "#/readResults/0/lines/39/words/2",
-                            "#/readResults/0/lines/39/words/3",
-                            "#/readResults/0/lines/39/words/4",
-                            "#/readResults/0/lines/39/words/5",
-                            "#/readResults/0/lines/39/words/6",
-                            "#/readResults/0/lines/39/words/7",
-                            "#/readResults/0/lines/39/words/8",
-                            "#/readResults/0/lines/40/words/0",
-                            "#/readResults/0/lines/41/words/0"
+                            "#/readResults/0/lines/6/words/0"
+                        ]
+                    },
+                    "Room Total Final": {
+                        "type": "string",
+                        "valueString": "$ 55,524.86",
+                        "text": "$ 55,524.86",
+                        "page": 1,
+                        "boundingBox": [
+                            5.185,
+                            4.705,
+                            5.915,
+                            4.705,
+                            5.915,
+                            4.82,
+                            5.185,
+                            4.82
+                        ],
+                        "confidence": 0.974,
+                        "elements": [
+                            "#/readResults/0/lines/36/words/0",
+                            "#/readResults/0/lines/37/words/0"
                         ]
                     },
                     "Rebate Total Final": {
@@ -12648,27 +12618,6 @@
                             "#/readResults/0/lines/32/words/0"
                         ]
                     },
-                    "Invoice Amount": {
-                        "type": "string",
-                        "valueString": "$ 122,249.72",
-                        "text": "$ 122,249.72",
-                        "page": 2,
-                        "boundingBox": [
-                            6.955,
-                            6.11,
-                            7.855,
-                            6.11,
-                            7.855,
-                            6.255,
-                            6.955,
-                            6.255
-                        ],
-                        "confidence": 0.997,
-                        "elements": [
-                            "#/readResults/1/lines/60/words/0",
-                            "#/readResults/1/lines/60/words/1"
-                        ]
-                    },
                     "Room Total": {
                         "type": "string",
                         "valueString": "$ 55,524.86",
@@ -12690,6 +12639,110 @@
                             "#/readResults/1/lines/35/words/0"
                         ]
                     },
+                    "Adjustments": {
+                        "type": "string",
+                        "valueString": "Joseph Johnson 5/31 room night $ (289.23)",
+                        "text": "Joseph Johnson 5/31 room night $ (289.23)",
+                        "page": 1,
+                        "boundingBox": [
+                            2.47,
+                            5.01,
+                            6.875,
+                            5.01,
+                            6.875,
+                            5.13,
+                            2.47,
+                            5.13
+                        ],
+                        "confidence": 0.974,
+                        "elements": [
+                            "#/readResults/0/lines/43/words/0",
+                            "#/readResults/0/lines/43/words/1",
+                            "#/readResults/0/lines/43/words/2",
+                            "#/readResults/0/lines/43/words/3",
+                            "#/readResults/0/lines/43/words/4",
+                            "#/readResults/0/lines/44/words/0",
+                            "#/readResults/0/lines/45/words/0"
+                        ]
+                    },
+                    "In Payment For": {
+                        "type": "string",
+                        "valueString": "American Funds Forum 1 May 28 June 1, 2019",
+                        "text": "American Funds Forum 1 May 28 June 1, 2019",
+                        "page": 1,
+                        "boundingBox": [
+                            3.05,
+                            3.215,
+                            4.49,
+                            3.215,
+                            4.49,
+                            3.66,
+                            3.05,
+                            3.66
+                        ],
+                        "confidence": 0.999,
+                        "elements": [
+                            "#/readResults/0/lines/20/words/0",
+                            "#/readResults/0/lines/20/words/1",
+                            "#/readResults/0/lines/20/words/2",
+                            "#/readResults/0/lines/20/words/3",
+                            "#/readResults/0/lines/21/words/0",
+                            "#/readResults/0/lines/21/words/1",
+                            "#/readResults/0/lines/21/words/3",
+                            "#/readResults/0/lines/21/words/4",
+                            "#/readResults/0/lines/21/words/5"
+                        ]
+                    },
+                    "Earned Comps Total Final": {
+                        "type": "string",
+                        "valueString": "Comp 1 per 50--4 room nights earned @ $249 $ (1,142.92)",
+                        "text": "Comp 1 per 50--4 room nights earned @ $249 $ (1,142.92)",
+                        "page": 1,
+                        "boundingBox": [
+                            2.475,
+                            4.86,
+                            6.875,
+                            4.86,
+                            6.875,
+                            4.98,
+                            2.475,
+                            4.98
+                        ],
+                        "confidence": 0.998,
+                        "elements": [
+                            "#/readResults/0/lines/39/words/0",
+                            "#/readResults/0/lines/39/words/1",
+                            "#/readResults/0/lines/39/words/2",
+                            "#/readResults/0/lines/39/words/3",
+                            "#/readResults/0/lines/39/words/4",
+                            "#/readResults/0/lines/39/words/5",
+                            "#/readResults/0/lines/39/words/6",
+                            "#/readResults/0/lines/39/words/7",
+                            "#/readResults/0/lines/39/words/8",
+                            "#/readResults/0/lines/40/words/0",
+                            "#/readResults/0/lines/41/words/0"
+                        ]
+                    },
+                    "Company": {
+                        "type": "string",
+                        "valueString": "INTERCONTINENTAL",
+                        "text": "INTERCONTINENTAL",
+                        "page": 1,
+                        "boundingBox": [
+                            1.14,
+                            1.04,
+                            3.015,
+                            1.04,
+                            3.015,
+                            1.22,
+                            1.14,
+                            1.22
+                        ],
+                        "confidence": 0.996,
+                        "elements": [
+                            "#/readResults/0/lines/2/words/0"
+                        ]
+                    },
                     "Misc Total": {
                         "type": "string",
                         "valueString": "$ 2,877.21",
@@ -12709,59 +12762,6 @@
                         "elements": [
                             "#/readResults/1/lines/53/words/0",
                             "#/readResults/1/lines/54/words/0"
-                        ]
-                    },
-                    "Earned Comps Total": {
-                        "type": "string",
-                        "valueString": "Comp 1 per 50 -- 4 room nights earned @ $249 $ (1,142.92)",
-                        "text": "Comp 1 per 50 -- 4 room nights earned @ $249 $ (1,142.92)",
-                        "page": 2,
-                        "boundingBox": [
-                            2.405,
-                            4.895,
-                            6.895,
-                            4.895,
-                            6.895,
-                            5.04,
-                            2.405,
-                            5.04
-                        ],
-                        "confidence": 0.997,
-                        "elements": [
-                            "#/readResults/1/lines/37/words/0",
-                            "#/readResults/1/lines/37/words/1",
-                            "#/readResults/1/lines/37/words/2",
-                            "#/readResults/1/lines/37/words/3",
-                            "#/readResults/1/lines/37/words/4",
-                            "#/readResults/1/lines/37/words/5",
-                            "#/readResults/1/lines/37/words/6",
-                            "#/readResults/1/lines/37/words/7",
-                            "#/readResults/1/lines/37/words/8",
-                            "#/readResults/1/lines/37/words/9",
-                            "#/readResults/1/lines/37/words/10",
-                            "#/readResults/1/lines/38/words/0",
-                            "#/readResults/1/lines/39/words/0"
-                        ]
-                    },
-                    "AV Total": {
-                        "type": "string",
-                        "valueString": "$ 39,496.04",
-                        "text": "$ 39,496.04",
-                        "page": 2,
-                        "boundingBox": [
-                            5.145,
-                            5.515,
-                            5.915,
-                            5.515,
-                            5.915,
-                            5.635,
-                            5.145,
-                            5.635
-                        ],
-                        "confidence": 0.995,
-                        "elements": [
-                            "#/readResults/1/lines/48/words/0",
-                            "#/readResults/1/lines/49/words/0"
                         ]
                     },
                     "Fiscal Year": null,
